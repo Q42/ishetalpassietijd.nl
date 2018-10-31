@@ -16,6 +16,17 @@ small {
     font-size: 20%;
     font-style: italic;
 }
+.rainbow {
+    animation: rainbow 3s infinite;
+}
+@keyframes rainbow {
+    0%{color: orange;}
+    10%{color: purple;}
+    20%{color: red;}
+    40%{color: yellow;}
+    60%{color: green;}
+    100%{color: blue;}
+}
 </style>
 
 <p>Is het al passietijd?</p>
@@ -24,7 +35,7 @@ small {
 date_default_timezone_set("Europe/Amsterdam");
 
 $yes = <<<HTML
-<h1>Ja!</h1>
+<h1 class="rainbow">Ja!</h1>
 <p><small>Ga coderen dan</small></p>
 HTML;
 
