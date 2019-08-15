@@ -36,17 +36,19 @@ date_default_timezone_set("Europe/Amsterdam");
 
 $yes = <<<HTML
 <h1 class="rainbow">Ja!</h1>
-<p><small>Ga coderen dan</small></p>
+<p><small>Ga gerust alvast coderen.</small></p>
 HTML;
 
 $no = <<<HTML
 <h1>Nee!</h1>
 HTML;
 
-$start = strtotime('wednesday 13:30');
-$end = strtotime('wednesday 17:30');
+$now = new DateTime();
+$start = new DateTime('wednesday 13:30');
+$end = new DateTime('wednesday 17:30');
+$weekNumber = (int) $now->format("W");
 
-if(time() >= $start && time() <= $end) {
+if($now >= $start && $now <= $end && $weekNumber % 2 != 0) {
     echo $yes;
 } else {
     echo $no;
