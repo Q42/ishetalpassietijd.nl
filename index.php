@@ -43,15 +43,10 @@ $no = <<<HTML
 <h1>Nee!</h1>
 HTML;
 
-$now = new DateTime();
-$start = new DateTime('wednesday 13:30');
-$end = new DateTime('wednesday 17:30');
-$weekNumber = (int) $now->format("W");
-
-if($now >= $start && $now <= $end && $weekNumber % 2 != 0) {
+$isFriday = date('w') == 5;
+if($isFriday) {
     echo $yes;
 } else {
     echo $no;
 }
-
 ?>
