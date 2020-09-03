@@ -43,8 +43,11 @@ $no = <<<HTML
 <h1>Nee!</h1>
 HTML;
 
-$isFriday = date('w') == 5;
-if($isFriday) {
+$now = new DateTime();
+$isFriday = $now->format("w") == 5;
+$weekNumber = (int) $now->format("W");
+// Every friday in an uneven week number
+if($isFriday && $weekNumber % 2 != 0) {
     echo $yes;
 } else {
     echo $no;
