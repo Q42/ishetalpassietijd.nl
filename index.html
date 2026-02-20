@@ -32,24 +32,8 @@ small {
 <p>Is het al passietijd?</p>
 <div id="answer"></div>
 
+<script src="passietijd.js"></script>
 <script>
-Date.prototype.getWeek = function() {
-    var d = new Date(this.getTime());
-    d.setHours(0, 0, 0, 0);
-    d.setDate(d.getDate() + 3 - ((d.getDay() + 6) % 7));
-    var yearStart = new Date(d.getFullYear(), 0, 4);
-    return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
-}
-
-function isPassietijd(now) {
-    // Convert to Europe/Amsterdam local time
-    var timeInAmsterdam = new Date(now.toLocaleString("en-US", { timeZone: "Europe/Amsterdam" }));
-    var isFriday = timeInAmsterdam.getDay() === 5;
-    var weekNumber = timeInAmsterdam.getWeek();
-    // Every Friday in an odd week number
-    return isFriday && weekNumber % 2 !== 0;
-}
-
 var answer = document.getElementById("answer");
 if (isPassietijd(new Date())) {
     answer.innerHTML = '<h1 class="rainbow">Ja!</h1><p><small>Ga gerust alvast coderen.</small></p>';
