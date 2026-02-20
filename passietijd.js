@@ -19,13 +19,6 @@ var EXCEPTIONS = {
  * @param {Date} now - The current date/time to check.
  * @returns {boolean} True if it is passietijd.
  */
-function formatDate(d) {
-    var y = d.getFullYear();
-    var m = String(d.getMonth() + 1).padStart(2, '0');
-    var day = String(d.getDate()).padStart(2, '0');
-    return y + '-' + m + '-' + day;
-}
-
 function isPassietijd(now) {
     var timeInAmsterdam = new Date(now.toLocaleString("en-US", { timeZone: "Europe/Amsterdam" }));
     var today = formatDate(timeInAmsterdam);
@@ -49,4 +42,11 @@ function isPassietijd(now) {
 
 if (typeof module !== 'undefined') {
     module.exports = { isPassietijd };
+}
+
+function formatDate(d) {
+    var y = d.getFullYear();
+    var m = String(d.getMonth() + 1).padStart(2, '0');
+    var day = String(d.getDate()).padStart(2, '0');
+    return y + '-' + m + '-' + day;
 }
