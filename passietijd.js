@@ -19,7 +19,7 @@ const EXCEPTIONS = {
  * @param {Date} now - The current date/time to check.
  * @returns {boolean} True if it is passietijd.
  */
-function isPassietijd(now) {
+export function isPassietijd(now) {
     const timeInAmsterdam = new Date(now.toLocaleString("en-US", { timeZone: "Europe/Amsterdam" }));
     const today = formatDate(timeInAmsterdam);
 
@@ -39,8 +39,6 @@ function isPassietijd(now) {
     const diffDays = Math.round((timeInAmsterdam - REFERENCE_DATE) / 86400000);
     return diffDays % 14 === 0;
 }
-
-export { isPassietijd };
 
 function formatDate(d) {
     const y = d.getFullYear();
