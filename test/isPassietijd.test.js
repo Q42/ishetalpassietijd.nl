@@ -3,7 +3,7 @@ const assert = require('node:assert');
 const { isPassietijd } = require('../passietijd.js');
 
 // All scheduled passietijd dates for 2026
-var passietijdDates = [
+const passietijdDates = [
     new Date(2026, 0, 23),  // Fri
     new Date(2026, 1, 6),   // Fri
     new Date(2026, 1, 20),  // Fri
@@ -39,7 +39,7 @@ for (let date of passietijdDates) {
 }
 
 // Some dates that are NOT passietijd (the weeks in between)
-var notPassietijdDates = [
+const notPassietijdDates = [
     new Date(2026, 0, 16),  // Fri, week before first passietijd
     new Date(2026, 0, 30),  // Fri, week after first passietijd
     new Date(2026, 1, 13),  // Fri, between two passietijds
