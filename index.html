@@ -32,8 +32,9 @@ small {
 <p>Is het al passietijd?</p>
 <div id="answer"></div>
 
-<script src="passietijd.js"></script>
-<script>
+<script type="module">
+import { isPassietijd } from './passietijd.js';
+
 const answer = document.getElementById("answer");
 if (isPassietijd(new Date())) {
     answer.innerHTML = '<h1 class="rainbow">Ja!</h1><p><small>Ga gerust alvast coderen.</small></p>';

@@ -40,9 +40,7 @@ function isPassietijd(now) {
     return diffDays % 14 === 0;
 }
 
-if (typeof module !== 'undefined') {
-    module.exports = { isPassietijd };
-}
+export { isPassietijd };
 
 function formatDate(d) {
     const y = d.getFullYear();
