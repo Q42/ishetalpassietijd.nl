@@ -30,26 +30,15 @@ small {
 </style>
 
 <p>Is het al passietijd?</p>
+<div id="answer"></div>
 
-<?php
-date_default_timezone_set("Europe/Amsterdam");
+<script type="module">
+import { isPassietijd } from './passietijd.js';
 
-$yes = <<<HTML
-<h1 class="rainbow">Ja!</h1>
-<p><small>Ga gerust alvast coderen.</small></p>
-HTML;
-
-$no = <<<HTML
-<h1>Nee!</h1>
-HTML;
-
-$now = new DateTime();
-$isFriday = $now->format("w") == 5;
-$weekNumber = (int) $now->format("W");
-// Every friday in an uneven week number
-if($isFriday && $weekNumber % 2 != 0) {
-    echo $yes;
+const answer = document.getElementById("answer");
+if (isPassietijd(new Date())) {
+    answer.innerHTML = '<h1 class="rainbow">Ja!</h1><p><small>Ga gerust alvast coderen.</small></p>';
 } else {
-    echo $no;
+    answer.innerHTML = '<h1>Nee!</h1>';
 }
-?>
+</script>
