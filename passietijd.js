@@ -14,7 +14,8 @@ const EXCEPTIONS = {
  * date (23 Jan 2026). Some dates may be moved to a different day; these are
  * listed as exceptions above.
  *
- * The check is evaluated in the Europe/Amsterdam timezone.
+ * The check is evaluated in the Europe/Amsterdam timezone 
+ * because that's where all Q42 offices are located.
  *
  * @param {Date} now - The current date/time to check.
  * @returns {boolean} True if it is passietijd.
