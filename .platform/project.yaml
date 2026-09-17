@@ -1,0 +1,6 @@
+kind: Project
+name: ishetalpassietijd
+services:
+  - name: web
+    static: .
+    public: true
