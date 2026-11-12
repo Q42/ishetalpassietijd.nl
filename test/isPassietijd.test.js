@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert';
-import { isPassietijd } from '../passietijd.js';
+import { isPassietijd, isW00tcamp } from '../passietijd.js';
 
 // All scheduled passietijd dates for 2026
 const passietijdDates = [
@@ -53,3 +53,22 @@ for (let date of notPassietijdDates) {
         assert.strictEqual(isPassietijd(date), false);
     });
 }
+
+// w00tcamp 2026: Thu 12 Nov 13:00 until Fri 13 Nov 20:30 (Amsterdam time)
+const w00tcampCases = [
+    ['2026-11-12T11:59:00Z', false], // 12:59 Amsterdam
+    ['2026-11-12T12:00:00Z', true],  // 13:00 Amsterdam
+    ['2026-11-13T00:00:00Z', true],
+    ['2026-11-13T19:29:00Z', true],  // 20:29 Amsterdam
+    ['2026-11-13T19:30:00Z', false], // 20:30 Amsterdam
+];
+
+for (const [iso, expected] of w00tcampCases) {
+    test(iso + ' w00tcamp is ' + expected, () => {
+        assert.strictEqual(isW00tcamp(new Date(iso)), expected);
+    });
+}
+
+test('w00tcamp counts as passietijd on a non-passietijd Thursday', () => {
+    assert.strictEqual(isPassietijd(new Date('2026-11-12T15:00:00Z')), true);
+});

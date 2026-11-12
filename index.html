@@ -33,10 +33,13 @@ small {
 <div id="answer"></div>
 
 <script type="module">
-import { isPassietijd } from './passietijd.js';
+import { isPassietijd, isW00tcamp } from './passietijd.js';
 
 const answer = document.getElementById("answer");
-if (isPassietijd(new Date())) {
+const now = new Date();
+if (isW00tcamp(now)) {
+    answer.innerHTML = '<h1 class="rainbow">Ja!</h1><p><small>Het is w00tcamp! Ga gerust alvast hacken.</small></p>';
+} else if (isPassietijd(now)) {
     answer.innerHTML = '<h1 class="rainbow">Ja!</h1><p><small>Ga gerust alvast coderen.</small></p>';
 } else {
     answer.innerHTML = '<h1>Nee!</h1>';

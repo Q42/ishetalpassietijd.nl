@@ -7,6 +7,28 @@ const EXCEPTIONS = {
     '2026-03-20': '2026-03-16', // Moved from Fri to Mon
 };
 
+// w00tcamp is the yearly Q42 hackathon and counts as passietijd.
+// Bounds are Amsterdam wall-clock time, matching how isPassietijd compares.
+// Add a new entry each year.
+const W00TCAMPS = [
+    { start: new Date(2026, 10, 12, 13, 0), end: new Date(2026, 10, 13, 20, 30) }, // Thu 12 Nov 13:00 - Fri 13 Nov 20:30
+];
+
+function toAmsterdamTime(now) {
+    return new Date(now.toLocaleString("en-US", { timeZone: "Europe/Amsterdam" }));
+}
+
+/**
+ * Determines whether it is currently w00tcamp.
+ *
+ * @param {Date} now - The current date/time to check.
+ * @returns {boolean} True if w00tcamp is in progress.
+ */
+export function isW00tcamp(now) {
+    const timeInAmsterdam = toAmsterdamTime(now);
+    return W00TCAMPS.some(({ start, end }) => timeInAmsterdam >= start && timeInAmsterdam < end);
+}
+
 /**
  * Determines whether it is currently passietijd.
  *
@@ -21,7 +43,9 @@ const EXCEPTIONS = {
  * @returns {boolean} True if it is passietijd.
  */
 export function isPassietijd(now) {
-    const timeInAmsterdam = new Date(now.toLocaleString("en-US", { timeZone: "Europe/Amsterdam" }));
+    if (isW00tcamp(now)) return true;
+
+    const timeInAmsterdam = toAmsterdamTime(now);
     const today = formatDate(timeInAmsterdam);
 
     // Check if today is an exception replacement date
